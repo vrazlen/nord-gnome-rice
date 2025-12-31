@@ -1,0 +1,2 @@
+blur-my-shell https://extensions.gnome.org/extension/3193/blur-my-shell/
+rounded-window-corners-reborn https://extensions.gnome.org/extension/7048/rounded-window-corners-reborn/

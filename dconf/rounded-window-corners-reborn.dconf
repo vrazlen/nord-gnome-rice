@@ -1,0 +1,5 @@
+[/]
+border-width=1
+global-rounded-corner-settings={'padding': <{'left': <uint32 1>, 'right': <uint32 1>, 'top': <uint32 1>, 'bottom': <uint32 1>}>, 'keepRoundedCorners': <{'maximized': <true>, 'fullscreen': <true>}>, 'borderRadius': <uint32 12>, 'smoothing': <0>, 'borderColor': <[0.29799999999999999, 0.33700000000000002, 0.41599999999999998, 1.0]>, 'enabled': <true>}
+settings-version=uint32 7
+skip-libadwaita-app=true
