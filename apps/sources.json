@@ -1,0 +1,25 @@
+{
+  "firefox": {
+    "gnome_theme_repo": "https://github.com/rafaelmardojai/firefox-gnome-theme",
+    "nord_theme_addon": "https://addons.mozilla.org/en-US/firefox/addon/nord-firefox/",
+    "nord_theme_xpi": "https://addons.mozilla.org/firefox/downloads/file/3849722/nord_firefox-2.41.xpi",
+    "nord_theme_guid": "{f4c9e1d6-6630-4600-ad50-d223eab7f3e7}"
+  },
+  "telegram": {
+    "theme_repo": "https://github.com/YazdanZ/Telegram-Nordic",
+    "theme_file": "https://raw.githubusercontent.com/YazdanZ/Telegram-Nordic/master/colors.tdesktop-theme",
+    "one_click": "https://t.me/addtheme/kde_nordic"
+  },
+  "spotify": {
+    "spicetify_cli": "https://spicetify.app/docs/getting-started",
+    "themes_repo": "https://github.com/spicetify/spicetify-themes"
+  },
+  "discord": {
+    "vencord": "https://vencord.dev/download",
+    "nord_css_repo": "https://github.com/nautilor/discord-nord-css",
+    "nord_css_raw": "https://raw.githubusercontent.com/nautilor/discord-nord-css/8945d3ce4431fb9d4da6b87b84521ed9801f9d36/custom.css"
+  },
+  "wallpapers": {
+    "nordic_wallpapers": "https://github.com/linuxdotexe/nordic-wallpapers"
+  }
+}
