@@ -1,3 +1,4 @@
+
 @import url("https://mwittrien.github.io/BetterDiscordAddons/Themes/BlurpleRecolor/BlurpleRecolor.css");
 @import url("https://gibbu.github.io/BetterDiscord-Themes/AdjustableServerWidth/base.css");
 @import url("https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap");
@@ -14,21 +15,42 @@
 }
 
 ::-webkit-input-placeholder, body, button, input, select, textarea {
-	font-family: var(--font, "Baloo2"), Whitney, sans-serif;
+	font-family: var(--font, "Baloo2"), Whitney;
 }
 
 :root{
+	/* Here you can define properties for use with Glasscord. */
+
+	/* Windows-specific properties */
+	/* Blur mode. Available types: acrylic (strong blur), blurbehind (light blur), transparent */
 	--glasscord-win-blur: blurbehind;
+	/* Acrylic mode makes some computers pretty unresponsive when resizing/moving the window.
+	   Should we work around it? */
 	--glasscord-win-performance-mode: true;
+
+	/* macOS-specific properties */
+	/* Vibrancy mode */
 	--glasscord-macos-vibrancy: fullscreen-ui;
+
+	/* Linux-specific properties */
+	/* Should Glasscord send a request to your window compositor to blur behind Discord's window? */
+	/* It currently supports KWin only */
 	--glasscord-linux-blur: true;
+
+	/* Discord-specific properties *
+	/* Custom (forced) titlebar */
+	/* native (default), windows, osx, linux (framed) */
 	--glasscord-titlebar: windows;
+
 	--font: 'Baloo2';
-	--accentcolor: 94,129,172;
-	--linkcolor: 136,192,208;
-	--server-icon-size: 40px;
-  	--server-icon-spacing: 8px;
-  	--server-container-padding: 10px;
+
+	--accentcolor: 94,129,172;		/* blurple - default: 114,137,218 */
+	--linkcolor: 136,192,208;		/* link - default: 0,176,244 */
+
+	--server-icon-size: 40px; /* Size of the server icons | DEFAULT: 35px */
+  	--server-icon-spacing: 8px; /* Spacing between server icons. Negative values are allowed | DEFAULT: 8px */
+  	--server-container-padding: 10px; /* Spacing to the left and right sides of server icons | DEFAULT: 10px */
+
 	--unread-badge: #eceff499 !important;
 	--unread-background: #eceff402 !important;
 	--selected-badge: #5e81ac !important;
@@ -61,6 +83,9 @@ body {
 	--background-emoji: rgb(46, 52, 64);
 	--text-lights-out: #eceff4;
 	--background-titlebar: #2e344050;
+  	--background-secondary: #2E3440;
+  	--background-secondary-alt: #2E3440;
+  	--background-tertiary: #2E3440;
 }
 
 .tabBody-2dgbAs {
@@ -409,7 +434,8 @@ nav[aria-label="Servers sidebar"]:hover span.item-2LIpTv {
 
 div.sidebar-1tnWFu {
     width: 15px;
-    transition: all 500ms ease-in;
+    /*transition: width 0.4s;*/
+	transition: all 500ms ease-in;
 	opacity: 0;
 }
 div.sidebar-1tnWFu:hover {

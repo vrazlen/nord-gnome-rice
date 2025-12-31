@@ -4,19 +4,51 @@ set -euo pipefail
 profile_dir=$(python - <<'PY'
 import configparser
 from pathlib import Path
-ini = Path.home() / ".mozilla/firefox/profiles.ini"
-config = configparser.RawConfigParser()
-config.read(ini)
-profiles = []
-for section in config.sections():
-    if section.startswith("Profile"):
-        path = config.get(section, "Path", fallback="")
-        default = config.get(section, "Default", fallback="0")
-        if path:
-            profiles.append((default == "1", path))
-profiles.sort(reverse=True)
-if profiles:
-    print(str(Path.home() / ".mozilla/firefox" / profiles[0][1]))
+
+def resolve_path(base_dir, path, is_relative):
+    candidate = Path(path)
+    if is_relative:
+        return base_dir / path
+    return candidate
+
+def find_profile(base_dir):
+    ini = base_dir / "profiles.ini"
+    if not ini.is_file():
+        return None
+    config = configparser.RawConfigParser()
+    config.read(ini)
+
+    for section in config.sections():
+        if section.startswith("Install"):
+            default = config.get(section, "Default", fallback="")
+            if default:
+                is_rel = config.get(section, "IsRelative", fallback="1") == "1"
+                return resolve_path(base_dir, default, is_rel)
+
+    profiles = []
+    for section in config.sections():
+        if section.startswith("Profile"):
+            path = config.get(section, "Path", fallback="")
+            if not path:
+                continue
+            is_rel = config.get(section, "IsRelative", fallback="1") == "1"
+            default = config.get(section, "Default", fallback="0") == "1"
+            profiles.append((default, resolve_path(base_dir, path, is_rel)))
+
+    profiles.sort(reverse=True)
+    if profiles:
+        return profiles[0][1]
+    return None
+
+base_candidates = [
+    Path.home() / ".var/app/org.mozilla.firefox/.mozilla/firefox",
+    Path.home() / ".mozilla/firefox",
+]
+for base in base_candidates:
+    profile = find_profile(base)
+    if profile:
+        print(str(profile))
+        break
 PY
 )
 
