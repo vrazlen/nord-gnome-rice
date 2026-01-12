@@ -1,0 +1,5 @@
+# Custom wallpapers (not committed to version control)
+apps/wallpapers/custom/
+
+# Runtime backup directory
+backup/

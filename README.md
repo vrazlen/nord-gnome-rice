@@ -5,14 +5,32 @@ Minimal Nord ricing setup for Fedora 43 GNOME Wayland with GTK, GNOME Shell, and
 ## Requirements
 
 - Fedora 43 GNOME Wayland
-- git, curl, python
+- git, curl, python, tar, wget
 - flatpak (for Discord/Spotify/Telegram Flatpaks)
 - spicetify (installed by script if missing)
+- sudo access (for GDM and Plymouth theming only)
 
 ## Scripts
 
-- `scripts/apply.sh`: Apply GTK and dconf settings
-- `scripts/restore.sh`: Restore previous settings
+### Core Theme Scripts
+
+- `scripts/apply.sh`: Apply full Nord theme (GTK, icons, cursor, fonts, wallpaper, dconf settings)
+- `scripts/restore.sh`: Restore previous settings from backup or reset to Fedora defaults
+
+### System Theming (Included in apply.sh)
+
+- `scripts/apply-icons.sh`: Install Papirus-Dark icon theme
+- `scripts/apply-cursor.sh`: Install Bibata-Modern-Ice cursor theme (size 24)
+- `scripts/apply-fonts.sh`: Install Inter UI font and JetBrains Mono monospace font
+- `scripts/apply-wallpaper-local.sh`: Set local wallpaper for desktop and lock screen
+
+### System-Level Theming (Requires sudo, run separately)
+
+- `scripts/apply-gdm-wallpaper.sh`: Apply wallpaper to GDM login screen (**Note: May not work on all systems**)
+- `scripts/apply-plymouth-nord-tint.sh`: Apply Nord-tinted Plymouth boot theme (**Note: May not work on all systems**)
+
+### Application-Specific Theming
+
 - `scripts/apply-firefox.sh`: Install Firefox GNOME theme and Nord theme XPI
 - `scripts/apply-telegram.sh`: Download Nord Telegram theme
 - `scripts/apply-spotify.sh`: Apply Spicetify Sleek + Nord
@@ -51,3 +69,23 @@ Recommended: install Discord as a user Flatpak to allow patching.
 
 Flatpak Vencord themes are read from:
 `~/.var/app/com.discordapp.Discord/config/Vencord/themes`
+
+## Wallpaper Setup
+
+The default `apply.sh` uses a local wallpaper at `apps/wallpapers/custom/at_the_coffeshop.png`. 
+
+**To use your own wallpaper:**
+1. Copy your wallpaper to `apps/wallpapers/custom/` (this directory is gitignored)
+2. Edit `scripts/apply-wallpaper-local.sh` and update the `WALLPAPER_PATH` variable
+3. Run `./scripts/apply.sh` or `./scripts/apply-wallpaper-local.sh` directly
+
+Alternatively, use `scripts/apply-wallpaper.sh` to download the full Nordic wallpaper collection.
+
+## Known Issues
+
+- **GDM Wallpaper**: May not apply correctly on some Fedora 43 systems due to GDM dconf handling variations
+- **Plymouth Theme**: May not display correctly on some systems; requires reboot to test
+- **Font Downloads**: Inter and JetBrains Mono are downloaded directly from GitHub (not available in Fedora repos)
+- **Cursor Theme**: Bibata-Modern-Ice is downloaded directly from GitHub (COPR repo doesn't have the package)
+
+If GDM or Plymouth theming fails, you can safely skip those scripts - the rest of the theme will still work perfectly.

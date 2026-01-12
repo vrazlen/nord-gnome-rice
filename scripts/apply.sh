@@ -38,3 +38,24 @@ if [ -f "$ROOT_DIR/dconf/user-theme.dconf" ]; then
 fi
 
 printf "Applied Nord GTK overrides.\n"
+
+# Apply additional Nord customizations
+if [ -f "$ROOT_DIR/scripts/apply-icons.sh" ]; then
+  bash "$ROOT_DIR/scripts/apply-icons.sh"
+fi
+
+if [ -f "$ROOT_DIR/scripts/apply-cursor.sh" ]; then
+  bash "$ROOT_DIR/scripts/apply-cursor.sh"
+fi
+
+if [ -f "$ROOT_DIR/scripts/apply-fonts.sh" ]; then
+  bash "$ROOT_DIR/scripts/apply-fonts.sh"
+fi
+
+if [ -f "$ROOT_DIR/scripts/apply-wallpaper-local.sh" ]; then
+  bash "$ROOT_DIR/scripts/apply-wallpaper-local.sh"
+fi
+
+printf "\n=== Optional system-level theming (requires sudo) ===\n"
+printf "To apply GDM wallpaper: bash %s/scripts/apply-gdm-wallpaper.sh\n" "$ROOT_DIR"
+printf "To apply Plymouth Nord theme: bash %s/scripts/apply-plymouth-nord-tint.sh\n" "$ROOT_DIR"
